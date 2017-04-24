@@ -45,8 +45,8 @@ namespace ServicesManager.Controllers
                 ApplicationName = new Uri(appName),
                 PartitionSchemeDescription = new SingletonPartitionSchemeDescription(),
                 InstanceCount = 1,
-                ServiceTypeName = "MailboxType",
-                ServiceName = new Uri($"{appName}/Mailbox" + new Random().Next(100).ToString() )
+                ServiceTypeName = "MailboxType", // Just an example
+                ServiceName = new Uri($"{appName}/Mailbox" + new Random(7).Next(100).ToString() ) // Improve the method to generate the service name. 
             };
             return _fabricClient.ServiceManager.CreateServiceAsync(serviceDescription);
         }

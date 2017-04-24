@@ -1,18 +1,19 @@
+# Synopsis
 # Service-Fabric-Self-Scale-Service
 Service Fabric use the approach to create new instances of service type. Using this approach, this project create a new instance of a service type based on some metrics inside of the running service. 
 
 This first version uses a simple way to create a new instance of service type based on the number of calls to the running service. 
 
+# Code Example
 Project 
-SaaSManagerService
-  SaaSManager2
-    - This is a Stateless service who create a new instance of an another ServiceType 
-    
-    private Task CreateService(string appName)
+    SaaSManagerService
+        SaaSManager2
+            - This is a Stateless service who create a new instance of an another ServiceType 
 
+    private Task CreateService(string appName)
         {
 
-            StatelessServiceDescription serviceDescription = new StatelessServiceDescription()
+             StatelessServiceDescription serviceDescription = new StatelessServiceDescription()
 
             {
 
@@ -31,9 +32,9 @@ SaaSManagerService
             return _fabricClient.ServiceManager.CreateServiceAsync(serviceDescription);
 
         }
+ 
 
-
-Nexts steps: 
+# Nexts steps: 
 Today the running service needs to invoke the SaaSManager2 service to ask it to create a new instance. The main go is to use the metrics generated to create a new instance with no coding on the running service. Implement Service Fabric metrics on the running service to change the way the service will scale.
 
 private const int ServiceRequestStartEventId = 99;
@@ -42,6 +43,7 @@ private const int ServiceRequestStartEventId = 99;
         {
             WriteEvent(ServiceRequestCountEventId, requestTypeName);
         }
+ 
 
 
 
