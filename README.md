@@ -1,9 +1,25 @@
-# Service-Fabric-Self-Scale-Service
-Service Fabric use the approach to create new instances of service type. Using this approach, this project create a new instance of a service type based on some metrics inside of the running service. 
+# Service-Fabric-Self-Scale-Service (SaaSManager2)
 
-This first version uses a simple way to create a new instance of service type based on the number of calls to the running service. 
+This first version uses a simple way to create a new instance of one serviceType available on the Service Fabric ImageStore, based on the number of calls to the running service. 
+
+PROBLEM STATEMENT 
+1.	Dynamic service creation: How to increase the computational density of a node?
+
+In a hyper scale service scenario, where a single service can receive millions of requests, a service must be able to self-scale. This is necessary because of external constraints to the service itself, such as a synchronous access time to a database can make your service not use a lot of CPU or memory, but have a delay to respond to requests. So, it is necessary to have one or N new instances of the same service running in a few seconds to be able to answer all requests, and when the number of requests decrease delete them.  
+
+In this case, the trigger to choose when a new instance will be created is not necessary the CPU or memory usage, but is more oriented to requests, transactions, even service response time, or any other custom application metric an application / service have. 
+
+2.	Why not chose to deploy new instances of the service using the common deployment usage, like create a new node / machine and deploy the service there? 
+
+This approach work fine for services that don’t need to scale freak, but in hyper scale computing, when you must create and delete services all the time, that’s not the best way to achieve this goal because the time to create new nodes, machines even containers, and deploy the application there doesn’t meet the time requirements.
+
+So, for this approach I decide to use the Service Fabric API’s to create a service (https://docs.microsoft.com/en-us/rest/api/servicefabric/create-a-service) who create a new instance of other services. 
+
 
 ## Code Example
+
+
+<b>SaasManager2</b> - The core project who use the Service Fabric API's to create a new instance of one serviceType available on the ImageStore.  
 > This is a Stateless service who create a new instance of an another ServiceType 
 
 
@@ -31,7 +47,32 @@ This first version uses a simple way to create a new instance of service type ba
 
         }
 ```
+ MailboxService - A simple service who calls SaaSManager2 with a custom metric as bellow:
+
+```C#
+ [HttpGet("{id}/messages")]
+        public async System.Threading.Tasks.Task<IActionResult> GetMessagesAsync(string id)
+        {
+           Requests++;
  
+			Stopwatch sw = new Stopwatch();
+
+            
+            if (Requests > [CUSTOM_VALUE]) await ScaleService();
+
+		[SOME CODE HERE]
+	 }
+
+     private static async Task ScaleService()
+        {
+
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri("http://localhost:8865/");
+            HttpResponseMessage response = await client.GetAsync("/api/ServiceManager/CreateService/[TYPE_OF_SERVICE]");
+            
+		[SOME CODE HERE]
+	}
+```
 
 # Nexts steps: 
 Today the running service needs to invoke the SaaSManager2 service to ask it to create a new instance. The main go is to use the metrics generated to create a new instance with no coding on the running service. Implement Service Fabric metrics on the running service to change the way the service will scale.
