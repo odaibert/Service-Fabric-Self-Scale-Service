@@ -4,13 +4,10 @@ Service Fabric use the approach to create new instances of service type. Using t
 This first version uses a simple way to create a new instance of service type based on the number of calls to the running service. 
 
 ## Code Example
-Project
-    SaaSManagerService
-        SaaSManager2
-            - This is a Stateless service who create a new instance of an another ServiceType 
+> This is a Stateless service who create a new instance of an another ServiceType 
 
 
-```C#
+```<language>
     private Task CreateService(string appName)
         {
 
@@ -50,3 +47,6 @@ Today the running service needs to invoke the SaaSManager2 service to ask it to 
 
 ```
 
+# License
+
+This project is licensed under the MIT License - see the this link https://choosealicense.com/licenses/mit/ for details
