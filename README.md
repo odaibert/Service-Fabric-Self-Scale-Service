@@ -47,7 +47,7 @@ So, for this approach I decide to use the Service Fabric API’s to create a servi
 
         }
 ```
- MailboxService - A simple service who calls SaaSManager2 with a custom metric as bellow:
+ <b>MailboxService</b> - A simple service who calls SaaSManager2 with a custom metric as bellow:
 
 ```C#
  [HttpGet("{id}/messages")]
