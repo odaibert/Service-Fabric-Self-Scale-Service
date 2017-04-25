@@ -9,7 +9,7 @@ In a hyper scale service scenario, where a single service can receive millions o
 
 In this case, the trigger to choose when a new instance will be created is not necessary the CPU or memory usage, but is more oriented to requests, transactions, even service response time, or any other custom application metric an application / service have. 
 
-2.	Why not chose to deploy new instances of the service using the common deployment usage, like create a new node / machine and deploy the service there? 
+2.	Why not choose to deploy new instances of the service using the common deployment usage, like create a new node / machine and deploy the service there? 
 
 This approach work fine for services that don’t need to scale freak, but in hyper scale computing, when you must create and delete services all the time, that’s not the best way to achieve this goal because the time to create new nodes, machines even containers, and deploy the application there doesn’t meet the time requirements.
 
