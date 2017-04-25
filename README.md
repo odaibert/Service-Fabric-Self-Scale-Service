@@ -74,12 +74,15 @@ So, for this approach I decide to use the Service Fabric API’s to create a servi
 	}
 ```
 
+ <b>SFMessageSimulator</b> - Console app who send messagens to MailboxService to test the service communication and scale.  
+
 # Nexts steps: 
 Today the running service needs to invoke the SaaSManager2 service to ask it to create a new instance. The main go is to use the metrics generated to create a new instance with no coding on the running service. Implement Service Fabric metrics on the running service to change the way the service will scale.
 
+
 ```C#
- private const int ServiceRequestStartEventId = 5;
-        [Event(ServiceRequestStartEventId, Level = EventLevel.Informational, Message = "Service request '{0}' started", Keywords = Keywords.Requests)]
+ private const int ServiceRequestStartEventId = 99;
+        [Event(ServiceRequestStartEventId, Level = EventLevel.Informational, Message = "Service request '{0} achieved the maximum and the service will be scalled' ", Keywords = Keywords.Requests)]
         public void ServiceRequestStart(string requestTypeName)
         {
             WriteEvent(ServiceRequestStartEventId, requestTypeName);
@@ -87,6 +90,11 @@ Today the running service needs to invoke the SaaSManager2 service to ask it to 
 
 
 ```
+
+# Know issues to fix or improve:
+1 - Sometimes the new instance is created using the same port from the running service. Create a new instance of the serviceType with a dynamic port
+ 
+2 - Create a better way to name the new instance of the service. Get the list of service names running and add a "short-GUID" to it. 
 
 # License
 
