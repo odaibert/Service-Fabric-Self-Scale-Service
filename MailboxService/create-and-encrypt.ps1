@@ -8,9 +8,9 @@ New-SelfSignedCertificate -Type DocumentEncryptionCert `
 #>
 
 # Set the thumbprint for the PFX certificate
-$thumbprint = "59df289207a303c694ae01c0e4a84b94dab305bc"
+$thumbprint = "[thumbprint]"
 
-$textToEncrypt = "fkdMzvAWTay0zn8nuE8cXjC5bc2LIEOpdsEFhCmCErMFGI3Fx2ZGb56Ao1kVmH4h36DUMBitoNYxzxpeLI13SQ=="
+$textToEncrypt = "[textToEncrypt]"
 Invoke-ServiceFabricEncryptText -Text $textToEncrypt `
                                 -CertStore `
                                 -CertThumbprint $thumbprint `
