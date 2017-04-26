@@ -1,0 +1,45 @@
+﻿{
+  "inputs": [
+    {
+      "type": "EventSource",
+      "sources": [
+        { "providerName": "ServiceFabricDemo.MailboxService-Mailbox" },
+        { "providerName": "Microsoft-ServiceFabric-Services" }
+        //{ "providerName": "Microsoft-ServiceFabric-Services" }
+        //{ "providerName": "Microsoft-ServiceFabric-Actors" }
+      ]
+        }
+  ],
+  "filters": [
+    {
+      "type": "drop",
+      "include": "Level == Verbose"
+    }
+  ],
+  "outputs": [
+    //{
+    //  "type": "StdOutput"
+    //},
+    // Please update the instrumentationKey.
+    {
+      "type": "ApplicationInsights",
+      "instrumentationKey": "87adc0cb-151c-467f-8de5-63a01d53be56"
+    }
+  ],
+  "schemaVersion": "2016-08-11",
+  // "healthReporter": {
+  //   "type": "CsvHealthReporter",
+  //   "logFileFolder": ".",
+  //   "logFilePrefix": "HealthReport",
+  //   "minReportLevel": "Warning",
+  //   "throttlingPeriodMsec": "1000"
+  // },
+  // "settings": {
+  //    "pipelineBufferSize": "1000",
+  //    "maxEventBatchSize": "100",
+  //    "maxBatchDelayMsec": "500",
+  //    "maxConcurrency": "8",
+  //    "pipelineCompletionTimeoutMsec": "30000"
+  // },
+  "extensions": []
+}

@@ -1,0 +1,46 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net461</TargetFramework>
+    <RuntimeIdentifier>win7-x64</RuntimeIdentifier>
+    <IsServiceFabricServiceProject>True</IsServiceFabricServiceProject>
+    <UserSecretsId>dce6bed4-b377-4877-b71c-265c4220c247</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="MailboxService - Shortcut.lnk" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.2" />
+    <PackageReference Include="Microsoft.Diagnostics.EventFlow.Inputs.EventSource" Version="1.1.0" />
+    <PackageReference Include="Microsoft.Diagnostics.EventFlow.Outputs.ApplicationInsights" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Diagnostics.EventFlow.ServiceFabric" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.AzureKeyVault" Version="1.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.1" />
+    <PackageReference Include="Microsoft.ServiceFabric" Version="5.5.216" />
+    <PackageReference Include="Microsoft.ServiceFabric.AspNetCore.WebListener" Version="2.5.216" />
+    <PackageReference Include="Microsoft.ServiceFabric.Data" Version="2.5.216" />
+    <PackageReference Include="Microsoft.ServiceFabric.Services" Version="2.5.216" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\DocumentDBRepository\DocumentDBRepository.csproj" />
+    <ProjectReference Include="..\..\Models\Models.csproj" />
+    <ProjectReference Include="..\..\Repository\Repository.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Update="PackageRoot\Config\eventFlowConfig.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>
