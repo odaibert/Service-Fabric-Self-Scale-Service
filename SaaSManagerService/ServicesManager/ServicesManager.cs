@@ -13,7 +13,7 @@ namespace ServicesManager
     /// The FabricRuntime creates an instance of this class for each service type instance. 
     /// In some point, need to change to Stateful Service? 
     /// </summary>
-    internal sealed class ServicesManager : StatelessService
+    internal sealed class ServicesManager : StatelessService // In some point, change to stateful service
     {
         public ServicesManager(StatelessServiceContext context)
             : base(context)
