@@ -1,8 +1,11 @@
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Follow on Twitter](https://img.shields.io/twitter/follow/daibert.svg?style=social&logo=twitter)](https://twitter.com/intent/follow?screen_name=daibert)
+
 # Service-Fabric-Self-Scale-Service (SaaSManager2)
 
 This first version uses a simple way to create a new instance of one serviceType available on the Service Fabric ImageStore, based on the number of calls to the running service. 
 
-# PROBLEM STATEMENT 
+# PROBLEM STATEMENTÂ 
 1.How to increase the computational density of a node?
 
 In a hyper scale service scenario, where a single service can receive millions of requests, a service must be able to self-scale. This is necessary because of external constraints to the service itself, such as a synchronous access time to a database can make your service not use a lot of CPU or memory, but have a delay to respond to requests. So, it is necessary to have one or N new instances of the same service running in a few seconds to be able to answer all requests, and when the number of requests decrease delete them.  
@@ -11,9 +14,9 @@ In this case, the trigger to choose when a new instance will be created is not n
 
 2.Why not choose to deploy new instances of the service using the common deployment usage, like create a new node / machine and deploy the service there? 
 
-This approach work fine for services that don’t need to scale freak, but in hyper scale computing, when you must create and delete services all the time, that’s not the best way to achieve this goal because the time to create new nodes, machines even containers, and deploy the application there doesn’t meet the time requirements.
+This approach work fine for services that donâ€™t need to scale freak, but in hyper scale computing, when you must create and delete services all the time, thatâ€™s not the best way to achieve this goal because the time to create new nodes, machines even containers, and deploy the application there doesnâ€™t meet the time requirements.
 
-So, for this approach I decide to use the Service Fabric API’s to create a service (https://docs.microsoft.com/en-us/rest/api/servicefabric/create-a-service) who create a new instance of other services. 
+So, for this approach I decide to use the Service Fabric APIâ€™s to create a service (https://docs.microsoft.com/en-us/rest/api/servicefabric/create-a-service) who create a new instance of other services. 
 
 
 # Code Example
